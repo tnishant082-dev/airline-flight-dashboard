@@ -1,0 +1,16 @@
+AirlineKey,AirlineCode,IataCode,DotId,AirlineName
+1,9E,9E,20363,Endeavor Air
+2,AA,AA,19805,American Airlines
+3,AS,AS,19930,Alaska Airlines
+4,B6,B6,20409,JetBlue Airways
+5,DL,DL,19790,Delta Air Lines
+6,F9,F9,20436,Frontier Airlines
+7,G4,G4,20368,Allegiant Air
+8,HA,HA,19690,Hawaiian Airlines
+9,MQ,MQ,20398,Envoy Air
+10,NK,NK,20416,Spirit Airlines
+11,OH,OH,20397,PSA Airlines
+12,OO,OO,20304,SkyWest Airlines
+13,UA,UA,19977,United Airlines
+14,WN,WN,19393,Southwest Airlines
+15,YX,YX,20452,Republic Airways

@@ -1,0 +1,45 @@
+table DimAirline
+	lineageTag: 8fc0ca8c-0216-4b19-8632-176f66a58397
+
+	column AirlineKey
+		dataType: int64
+		isHidden
+		lineageTag: 9f9d17fe-5ce4-41c3-a57f-f4a547e7e100
+		summarizeBy: none
+		sourceColumn: AirlineKey
+
+	column AirlineCode
+		dataType: string
+		lineageTag: 0f7a7a3b-6818-4c7d-b8fd-68a49d86f6bc
+		summarizeBy: none
+		sourceColumn: AirlineCode
+
+	column IataCode
+		dataType: string
+		lineageTag: 209c1cda-7fdf-44b3-826a-d24459d8147b
+		summarizeBy: none
+		sourceColumn: IataCode
+
+	column DotId
+		dataType: int64
+		isHidden
+		lineageTag: e483e740-d2a6-4290-8a64-f25e7ad60e49
+		summarizeBy: none
+		sourceColumn: DotId
+
+	column AirlineName
+		dataType: string
+		lineageTag: e4753537-d247-40be-b564-2c96890fd773
+		summarizeBy: none
+		sourceColumn: AirlineName
+
+	partition DimAirline = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(pDataFolder & "\\dim_airline.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(#"Promoted Headers", {{"AirlineKey", Int64.Type}, {"AirlineCode", type text}, {"IataCode", type text}, {"DotId", Int64.Type}, {"AirlineName", type text}})
+				in
+				    Typed
+

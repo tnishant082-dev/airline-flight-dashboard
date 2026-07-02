@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "f9b51511-ce2b-4d70-96d9-6200e0cacce8",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 400,
+            "y": 0
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "a3574909-4f14-4f62-acba-e5ca9cdda995",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 800,
+            "y": 0
+          },
+          "nodeIndex": "DimAirline",
+          "nodeLineageTag": "8fc0ca8c-0216-4b19-8632-176f66a58397",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 200,
+            "y": 350
+          },
+          "nodeIndex": "DimOriginAirport",
+          "nodeLineageTag": "eb014c9d-6dc9-44c0-8b3a-8ca7f2d9cc30",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 500,
+            "y": 350
+          },
+          "nodeIndex": "FactFlights",
+          "nodeLineageTag": "9cc90b1b-907e-4837-91fd-fe43c2cdffa1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 800,
+            "y": 350
+          },
+          "nodeIndex": "DimDestAirport",
+          "nodeLineageTag": "8a2352ac-20d7-4eb0-a798-56dee94d09a7",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 500,
+            "y": 700
+          },
+          "nodeIndex": "DimRoute",
+          "nodeLineageTag": "041fa069-e3a9-4b40-86e8-35087413e090",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100.0,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

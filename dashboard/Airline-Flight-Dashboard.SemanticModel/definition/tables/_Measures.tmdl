@@ -1,0 +1,138 @@
+table _Measures
+	lineageTag: f9b51511-ce2b-4d70-96d9-6200e0cacce8
+
+	measure Flights = COUNTROWS ( FactFlights )
+		formatString: #,0
+		displayFolder: A Volume
+		lineageTag: 1a5aa0af-702f-4996-b1ac-566076531f4b
+
+	measure 'Cancelled Flights' = CALCULATE ( COUNTROWS ( FactFlights ), FactFlights[Cancelled] = 1 )
+		formatString: #,0
+		displayFolder: A Volume
+		lineageTag: e756887f-56e6-4c88-b889-9a5ff4a10eae
+
+	measure 'Cancellation %' = DIVIDE ( [Cancelled Flights], [Flights] )
+		formatString: 0.0%
+		displayFolder: A Volume
+		lineageTag: 4353f31d-ec98-4cce-a1b1-5805de2aabec
+
+	measure Diverted = CALCULATE ( COUNTROWS ( FactFlights ), FactFlights[Diverted] = 1 )
+		formatString: #,0
+		displayFolder: A Volume
+		lineageTag: 06d1426e-48fc-4361-849e-3d4b3c1f80a2
+
+	measure 'On-Time Arrivals %' =
+			DIVIDE ( CALCULATE ( COUNTROWS ( FactFlights ), FactFlights[IsOnTimeArr] = 1 ), CALCULATE ( COUNTROWS ( FactFlights ), FactFlights[Cancelled] = 0, FactFlights[Diverted] = 0 ) )
+		formatString: 0.0%
+		displayFolder: B Performance
+		lineageTag: 1a38b66d-bdc1-4e7d-a014-a4401eff0f43
+
+	measure 'Avg Arr Delay' = AVERAGE ( FactFlights[ArrDelayMinutes] )
+		formatString: 0.0
+		displayFolder: B Performance
+		lineageTag: 121ac173-df38-43f4-ac65-7ca9d1ab81c6
+
+	measure 'Avg Dep Delay' = AVERAGE ( FactFlights[DepDelayMinutes] )
+		formatString: 0.0
+		displayFolder: B Performance
+		lineageTag: 7b3e5392-598a-493f-bb7d-6f4100c6cf6c
+
+	measure 'Delayed Arrivals' = CALCULATE ( COUNTROWS ( FactFlights ), FactFlights[IsDelayedArr] = 1 )
+		formatString: #,0
+		displayFolder: B Performance
+		lineageTag: 1bf74910-b194-405a-8d45-5e2f3d204ebc
+
+	measure 'Delayed Departures' = CALCULATE ( COUNTROWS ( FactFlights ), FactFlights[IsDelayedDep] = 1 )
+		formatString: #,0
+		displayFolder: B Performance
+		lineageTag: 117cdf6c-32de-4a22-b984-e67256d2c61b
+
+	measure 'Distance Total' = SUM ( FactFlights[Distance] )
+		formatString: #,0
+		displayFolder: A Volume
+		lineageTag: c08fdb5f-0506-41da-95c2-dcc18939d4c5
+
+	measure 'Carrier Delay Minutes' = SUM ( FactFlights[CarrierDelay] )
+		formatString: #,0
+		displayFolder: C Delay Causes
+		lineageTag: de47ea35-efe3-40b6-839d-916081b49c59
+
+	measure 'Weather Delay Minutes' = SUM ( FactFlights[WeatherDelay] )
+		formatString: #,0
+		displayFolder: C Delay Causes
+		lineageTag: efa7cbc1-a195-41d2-850f-9a1e860a1aaa
+
+	measure 'NAS Delay Minutes' = SUM ( FactFlights[NASDelay] )
+		formatString: #,0
+		displayFolder: C Delay Causes
+		lineageTag: 646297fe-ba24-4dc3-a5fe-d80f25dea635
+
+	measure 'Security Delay Minutes' = SUM ( FactFlights[SecurityDelay] )
+		formatString: #,0
+		displayFolder: C Delay Causes
+		lineageTag: b091b7d3-cc27-4df8-bca7-2d019cab2c95
+
+	measure 'Late Aircraft Delay Minutes' = SUM ( FactFlights[LateAircraftDelay] )
+		formatString: #,0
+		displayFolder: C Delay Causes
+		lineageTag: a275378a-d52c-42b1-b66a-599f900a6a44
+
+	measure 'Total Delay Minutes' =
+			[Carrier Delay Minutes] + [Weather Delay Minutes] + [NAS Delay Minutes] + [Security Delay Minutes] + [Late Aircraft Delay Minutes]
+		formatString: #,0
+		displayFolder: C Delay Causes
+		lineageTag: 4c10d681-4e4d-4278-bb1e-d97ea7b7c179
+
+	measure 'Carrier Delay %' = DIVIDE ( [Carrier Delay Minutes], [Total Delay Minutes] )
+		formatString: 0.0%
+		displayFolder: C Delay Causes
+		lineageTag: 07e76c1f-9ab8-42d1-b3b9-acdd33e74724
+
+	measure 'Weather Delay %' = DIVIDE ( [Weather Delay Minutes], [Total Delay Minutes] )
+		formatString: 0.0%
+		displayFolder: C Delay Causes
+		lineageTag: 1b0a550e-25e3-4dbb-90de-ebff361fe803
+
+	measure 'NAS Delay %' = DIVIDE ( [NAS Delay Minutes], [Total Delay Minutes] )
+		formatString: 0.0%
+		displayFolder: C Delay Causes
+		lineageTag: 1620aa94-6f29-42fc-8bce-d60bf8c0dd9b
+
+	measure 'Security Delay %' = DIVIDE ( [Security Delay Minutes], [Total Delay Minutes] )
+		formatString: 0.0%
+		displayFolder: C Delay Causes
+		lineageTag: 776b91aa-3494-4843-a5fd-3da9bcd9ae24
+
+	measure 'Late Aircraft Delay %' = DIVIDE ( [Late Aircraft Delay Minutes], [Total Delay Minutes] )
+		formatString: 0.0%
+		displayFolder: C Delay Causes
+		lineageTag: b8c90439-ea2e-44d1-9191-1f9c437a2e7c
+
+	measure Airlines = DISTINCTCOUNT ( FactFlights[AirlineKey] )
+		formatString: #,0
+		displayFolder: D Network
+		lineageTag: b202911b-5638-456f-a359-04cf711fb8da
+
+	measure 'Origin Airports' = DISTINCTCOUNT ( FactFlights[OriginAirportKey] )
+		formatString: #,0
+		displayFolder: D Network
+		lineageTag: 7afb0323-7e8f-4e2b-8fec-a9b75d8b42c9
+
+	measure 'Dest Airports' = DISTINCTCOUNT ( FactFlights[DestAirportKey] )
+		formatString: #,0
+		displayFolder: D Network
+		lineageTag: 109f438b-8796-4bb4-8224-b55439f35211
+
+	measure Routes = DISTINCTCOUNT ( FactFlights[RouteKey] )
+		formatString: #,0
+		displayFolder: D Network
+		lineageTag: e5552a32-36c9-44d8-ba4f-128a17a8ed65
+
+	column Id
+		lineageTag: 96eea4eb-d343-41f1-a8fd-70aad5545f90
+		isNameInferred
+		sourceColumn: [Id]
+
+	partition _Measures = calculated
+		mode: import
+		source = DATATABLE("Id", INTEGER, {{1}})

@@ -1,0 +1,51 @@
+table DimOriginAirport
+	lineageTag: eb014c9d-6dc9-44c0-8b3a-8ca7f2d9cc30
+
+	column AirportKey
+		dataType: int64
+		isHidden
+		lineageTag: 0fb24c4c-b389-4d72-946e-d7dfaa898e1b
+		summarizeBy: none
+		sourceColumn: AirportKey
+
+	column AirportId
+		dataType: int64
+		isHidden
+		lineageTag: f271ff1d-2935-4d8d-82fa-bff539404ed9
+		summarizeBy: none
+		sourceColumn: AirportId
+
+	column AirportCode
+		dataType: string
+		lineageTag: 0cdba3e4-8d30-4e9d-83d7-d4b186c6df9a
+		summarizeBy: none
+		sourceColumn: AirportCode
+
+	column City
+		dataType: string
+		lineageTag: cf570519-add3-4451-87dc-2f12f98b3598
+		summarizeBy: none
+		sourceColumn: City
+
+	column State
+		dataType: string
+		lineageTag: 61873d88-29fb-4488-a3f7-c3215b5d3523
+		summarizeBy: none
+		sourceColumn: State
+
+	column StateName
+		dataType: string
+		lineageTag: 8a68dfc1-5b74-4c03-8ec3-786c52b02ffc
+		summarizeBy: none
+		sourceColumn: StateName
+
+	partition DimOriginAirport = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(pDataFolder & "\\dim_airport.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(#"Promoted Headers", {{"AirportKey", Int64.Type}, {"AirportId", Int64.Type}, {"AirportCode", type text}, {"City", type text}, {"State", type text}, {"StateName", type text}})
+				in
+				    Typed
+
