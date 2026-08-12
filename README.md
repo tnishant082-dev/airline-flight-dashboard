@@ -112,21 +112,21 @@ Period covered: **January 2024** · **100,000** flights (stratified sample of 54
 
 ## Tools Used
 
+- Power BI
 - SQL
 - Python
 - Excel
-- Dashboarding
 
 ---
 
 ## Repository Structure
 
 ```text
-data/          cleaned flight and dimension tables
+data/          cleaned tables (csv / xlsx / parquet)
+excel/         dictionary, cleaning log, summary
 sql/           KPI and quality queries
-python/        cleaning and metric checks
-excel/         dictionary and summary tables
-dashboard/     interactive dashboard
+python/        EDA / cleaning / feature scripts
+dashboard/     Power BI project (.pbip)
 screenshots/   dashboard page images
 artifacts/     walkthrough video
 ```
@@ -135,9 +135,9 @@ artifacts/     walkthrough video
 
 ## How to View
 
-1. Review screenshots under [`screenshots/`](./screenshots/).
-2. Watch [`artifacts/airline-flight-dashboard-demo.mp4`](./artifacts/airline-flight-dashboard-demo.mp4).
-3. Reproduce KPIs with `sql/03_kpi_queries.sql` against `data/`.
+1. Open `dashboard/Airline-Flight-Dashboard.pbip` in Power BI Desktop
+2. See [`screenshots/`](./screenshots/)
+3. Watch [`artifacts/airline-flight-dashboard-demo.mp4`](./artifacts/airline-flight-dashboard-demo.mp4)
 
 ---
 
