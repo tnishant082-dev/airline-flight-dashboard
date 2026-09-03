@@ -125,7 +125,7 @@ Period covered: **January 2024** · **100,000** flights (stratified sample of 54
 data/          cleaned tables (csv / xlsx / parquet)
 excel/         dictionary, cleaning log, summary
 sql/           KPI and quality queries
-python/        EDA / cleaning / feature scripts
+notebooks/     analysis notebooks (.ipynb)
 dashboard/     Power BI project (.pbip)
 screenshots/   dashboard page images
 artifacts/     walkthrough video
