@@ -1,0 +1,82 @@
+table DimDate
+	lineageTag: a3574909-4f14-4f62-acba-e5ca9cdda995
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 62e57b4f-4364-4be7-8263-7f90328e398b
+		summarizeBy: none
+		sourceColumn: Date
+
+	column DateKey
+		dataType: int64
+		isHidden
+		lineageTag: ae66de82-6da6-4a4f-a20a-b06b22d5302a
+		summarizeBy: none
+		sourceColumn: DateKey
+
+	column Year
+		dataType: int64
+		lineageTag: c080b993-890b-4ca1-8542-aaee71806b68
+		dataCategory: Years
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Month
+		dataType: int64
+		isHidden
+		lineageTag: 9c53f047-7b51-4558-8afc-e4e8f20baa44
+		summarizeBy: none
+		sourceColumn: Month
+
+	column Day
+		dataType: int64
+		lineageTag: c442a63a-6d11-4603-a852-df9e0c67e962
+		summarizeBy: none
+		sourceColumn: Day
+
+	column DayOfWeek
+		dataType: int64
+		isHidden
+		lineageTag: 86d6ad6f-297b-4e5d-8131-5253ebdff40e
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+	column DayName
+		dataType: string
+		lineageTag: ca8ab6ca-988e-425f-b668-529e8771d108
+		summarizeBy: none
+		sourceColumn: DayName
+		sortByColumn: DayOfWeek
+
+	column WeekOfYear
+		dataType: int64
+		lineageTag: 86596e5f-1740-45fe-a4e2-86e73ca5c7ce
+		summarizeBy: none
+		sourceColumn: WeekOfYear
+
+	column MonthName
+		dataType: string
+		lineageTag: c53b8783-1881-4a5f-a82b-15be400c8e32
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: Month
+
+	column IsWeekend
+		dataType: int64
+		lineageTag: 6fc9bee5-fbc2-463f-8771-35291e42711c
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(pDataFolder & "\\dim_date.csv"), [Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(#"Promoted Headers", {{"Date", type date}, {"DateKey", Int64.Type}, {"Year", Int64.Type}, {"Month", Int64.Type}, {"Day", Int64.Type}, {"DayOfWeek", Int64.Type}, {"DayName", type text}, {"WeekOfYear", Int64.Type}, {"MonthName", type text}, {"IsWeekend", Int64.Type}})
+				in
+				    Typed
+

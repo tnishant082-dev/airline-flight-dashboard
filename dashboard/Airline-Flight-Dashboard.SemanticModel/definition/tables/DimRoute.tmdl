@@ -1,0 +1,44 @@
+table DimRoute
+	lineageTag: 041fa069-e3a9-4b40-86e8-35087413e090
+
+	column RouteKey
+		dataType: int64
+		isHidden
+		lineageTag: 0d5a3db5-6c03-4959-b730-dd6ffe36606c
+		summarizeBy: none
+		sourceColumn: RouteKey
+
+	column Route
+		dataType: string
+		lineageTag: f773b765-c2bc-4e4d-9807-dd23ad70fcf5
+		summarizeBy: none
+		sourceColumn: Route
+
+	column Origin
+		dataType: string
+		lineageTag: 50c950c2-4862-4841-9e50-b15538732f82
+		summarizeBy: none
+		sourceColumn: Origin
+
+	column Dest
+		dataType: string
+		lineageTag: edc86cac-800a-45fc-ac14-937cd149621f
+		summarizeBy: none
+		sourceColumn: Dest
+
+	column FlightCountSample
+		dataType: int64
+		lineageTag: 53ae06e5-dff7-4d71-9417-e499ce7336ed
+		summarizeBy: sum
+		sourceColumn: FlightCountSample
+
+	partition DimRoute = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(pDataFolder & "\\dim_route.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(#"Promoted Headers", {{"RouteKey", Int64.Type}, {"Route", type text}, {"Origin", type text}, {"Dest", type text}, {"FlightCountSample", Int64.Type}})
+				in
+				    Typed
+

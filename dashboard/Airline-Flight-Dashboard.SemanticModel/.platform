@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Airline-Flight-Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "37a31515-8dba-48b0-9d86-dc72c81790ce"
+  }
+}

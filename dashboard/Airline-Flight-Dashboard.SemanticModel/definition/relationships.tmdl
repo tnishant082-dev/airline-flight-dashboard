@@ -1,0 +1,19 @@
+relationship 05fdf116-fdda-4d9e-a210-76ebe0e71854
+	fromColumn: FactFlights.DateKey
+	toColumn: DimDate.DateKey
+
+relationship 09d008c9-a729-4521-96c8-e949e8ab0746
+	fromColumn: FactFlights.AirlineKey
+	toColumn: DimAirline.AirlineKey
+
+relationship 08baf1b6-32a7-4b95-bdb6-4aa55436aea8
+	fromColumn: FactFlights.OriginAirportKey
+	toColumn: DimOriginAirport.AirportKey
+
+relationship ee1a308d-9ae2-484e-a89a-1f66e88c14a8
+	fromColumn: FactFlights.DestAirportKey
+	toColumn: DimDestAirport.AirportKey
+
+relationship 75b22f1d-0de2-4198-993a-50ea8a0ba735
+	fromColumn: FactFlights.RouteKey
+	toColumn: DimRoute.RouteKey
