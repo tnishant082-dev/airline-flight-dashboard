@@ -2,7 +2,7 @@
 
 End-to-end data analyst project: US airline on-time performance for January 2024 — Excel data dictionary & cleaning log, Python EDA, SQL KPI queries, and a Power BI executive dashboard.
 
-**Open in Power BI Desktop:** [`dashboard/Airline-Flight-Dashboard.pbip`](./dashboard/Airline-Flight-Dashboard.pbip)
+**Semantic model / report stub:** [`dashboard/Airline-Flight-Dashboard.pbip`](./dashboard/Airline-Flight-Dashboard.pbip) · portfolio visuals in [`screenshots/`](./screenshots/)
 
 ---
 
@@ -168,6 +168,8 @@ README.md
 ---
 
 ## Screenshots
+
+Portfolio report visuals for review — **metrics come from the cleaned BTS/sample pipeline** (`data/`, `sql/`, Python EDA outputs) in this repo. Not a claim that these PNGs are live Power BI Desktop exports or a published Fabric workspace.
 
 ### Executive Overview
 
